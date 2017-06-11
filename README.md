@@ -1,4 +1,4 @@
-**SundayAlgo**
+#SundayAlgo
 
  [일요일 알고리즘 스터디]
 
