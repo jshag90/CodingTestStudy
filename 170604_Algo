@@ -1,0 +1,29 @@
+문제
+input
+Pkt 1 : rule = Background Traffic-imap, ts idx = 0, content_set
+Pkt 2 : rule = Background Traffic-smtp, ts idx = 0, content_set
+Pkt 3 : rule = Background Traffic-ftp, ts idx = 0, content_set
+Pkt 4 : rule = Background Traffic-smtp, ts idx = 0, content_set
+Pkt 5 : rule = Background Traffic-ftp, ts idx = 0, content_set
+Pkt 6 : rule = Background Traffic-ftp, ts idx = 0, content_set
+Pkt 7 : rule = Background Traffic-ftp, ts idx = 0, content_set
+Pkt 8 : rule = Background Traffic-imap, ts idx = 0, content_set
+Pkt 9 : rule = Background Traffic-imap, ts idx = 0, content_set
+Pkt 10 : rule = Background Traffic-ftp, ts idx = 0, content_set
+
+Pkt 1 |:| rule |=| Background Traffic|-|imap|,| ts idx |=| 0|,| content|_|set
+
+위와 같은 데이터를 받았을 때 다음과 같이 출력하시오.
+
+파라미터
+imap
+
+output
+
+위치 : [0,3]
+출력횟수 : 1
+
+추가 : 검색 속도
+
+position : 0,3
+count : 1
