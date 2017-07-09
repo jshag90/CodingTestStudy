@@ -15,6 +15,8 @@ public class BracketCheck {
 		
 		Map<String,String> bracketMap = new HashMap<String,String>();
 		
+		
+		
 		String[] bracketSplit = inputBracket.split(",");
 		
 		for(int i=1; i<bracketSplit.length; i++){	
@@ -46,27 +48,27 @@ public class BracketCheck {
 		if(bracketMap.containsKey("{")){
 			if(bracketMap.get("{").equals("}")){
 				result = 0;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}else{
 				result =  1;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}
 		}else if(bracketMap.containsKey("(")){
 			if(bracketMap.get("(").equals(")")){
 				result = 0;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}else{
 				result =  1;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}
 			
 		}else if(bracketMap.containsKey("[")){
 			if(bracketMap.get("[").equals("]")){
 				result = 0;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}else{
 				result =  1;
-				logStr += "ÆÇº° : " + result;
+				logStr += "ï¿½Çºï¿½ : " + result;
 			}
 			
 		}
