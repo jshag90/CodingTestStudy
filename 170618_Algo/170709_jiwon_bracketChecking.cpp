@@ -97,7 +97,6 @@ int main(void)
 	return 0;
 }
 
-
 void push(char input)
 {
 	if (top >= (STACK_SIZE - 1)) //스택이 가득차면, 더이상 삽입이 불가능함
@@ -105,7 +104,6 @@ void push(char input)
 	stack[++top] = input; //스택에 데이터 삽입
 
 }
-
 
 void print(void)
 {
