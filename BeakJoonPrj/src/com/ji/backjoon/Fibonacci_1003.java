@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main2 {
+public class Fibonacci_1003 {
 
-	public static List<Integer> countArr = new ArrayList<Integer>();
+	public static Integer countNumZero = 0, countNumOne = 0;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
@@ -25,18 +25,8 @@ public class Main2 {
 		for (int i = 1; i < inputNumbers.size(); i++) {
 
 			fibonacci(inputNumbers.get(i));
-			
-			int countOne = 0,countZero = 0;
-			for(Integer num : countArr){
-				if(num == 1){
-					countOne++;
-				}else{
-					countZero++;
-				}
-			}
-			
-			System.out.println(countZero +" " +countOne);
-			countArr = new ArrayList<Integer>(); 
+			System.out.println(countNumZero + " " + countNumOne);
+			countNumZero = 0; countNumOne = 0;
 
 		}
 
@@ -45,16 +35,15 @@ public class Main2 {
 	public static int fibonacci(int n) {
 
 		if (n == 0) {
-			countArr.add(0);
+			countNumZero++;
 			return 0;
 		} else if (n == 1) {
-			countArr.add(1);
+			countNumOne++;
 			return 1;
 		} else {
 			int num1 = n - 1, num2 = n - 2;
 			return fibonacci(num1) + fibonacci(num2);
 		}
-		
 	}
 
 }
