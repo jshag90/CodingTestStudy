@@ -5,46 +5,44 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
-public class Prime_1929 {
+public class Prime_1930_final {
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
+
 		String inputNumber = br.readLine();
 		String[] inputNumberSplite = inputNumber.split(" ");
 		Integer startNumber = Integer.parseInt(inputNumberSplite[0]);
 		Integer endNumber = Integer.parseInt(inputNumberSplite[1]);
-		
-		checkPrimeNumber( startNumber, endNumber, endNumber-1);
+
+		ArrayList<Integer> primeList = new ArrayList<Integer>();
+        boolean isPrime[] = new boolean[endNumber + 1];
+        for(int i = 2; i <= endNumber; i++) {
+            isPrime[i] = true;
+        }
+        for(int i = 2; i <= endNumber; i++) {
+            if(!isPrime[i]) continue;
+            else {
+            	if(i>=startNumber)
+            	primeList.add(i);
+            };
+            for(int j = i*2; j <= endNumber; j += i) {
+                isPrime[j] = false;
+            }
+        }
+        for(Integer num : primeList) {
+        	 bw.write(num + "\n");
+        }
+        
 
 		br.close();
 		bw.flush();
 		bw.close();
-		
-	}
-	
-	public static void checkPrimeNumber(int start, int end, int end2) throws IOException{
-		
-		int num = end;
-		int num2 = end2;
-		
-		if (num % num2 == 0 && num2 > 1 && end >= start){//소수아님
-			checkPrimeNumber(start,num-1, num - 2);
-		}else if(num % num2 != 0 && num2 > 1 && end >= start ){ //소수
-			if(num2 == 2){
-				Integer prime = num;
-				System.out.println(prime);
-				checkPrimeNumber(start,num-1, num - 2);
-			}else{
-				checkPrimeNumber(start,num, num2 - 1);
-			}
-		}else{
-			
-		}
-			
+
 	}
 
 
