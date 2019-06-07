@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class Prime_1930_final {
+public class Prime_1929_final {
 
 	public static void main(String[] args) throws IOException {
 
@@ -21,16 +21,15 @@ public class Prime_1930_final {
 
 		ArrayList<Integer> primeList = new ArrayList<Integer>();
         boolean isPrime[] = new boolean[endNumber + 1];
-        for(int i = 2; i <= endNumber; i++) {
+        for(int i = 2; i <= endNumber; i++) { //
             isPrime[i] = true;
         }
         for(int i = 2; i <= endNumber; i++) {
             if(!isPrime[i]) continue;
             else {
-            	if(i>=startNumber)
-            	primeList.add(i);
+            	if(i>=startNumber) primeList.add(i);
             };
-            for(int j = i*2; j <= endNumber; j += i) {
+            for(int j = i*2; j <= endNumber; j += i) { //배수들 제거
                 isPrime[j] = false;
             }
         }
