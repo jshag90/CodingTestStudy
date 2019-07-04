@@ -2,7 +2,7 @@ package com.ji.refer.example;
 
 import java.util.Scanner;
 
-public class DfsAlgo {
+public class DfsAlgo_Array {
 	
 	static int nE;
 	static int nV;
