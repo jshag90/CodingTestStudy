@@ -47,10 +47,11 @@ public class Problem3 {
 		List<Object> newRelactionList = new ArrayList<Object>();
 		for (int i = 0; i < relationListChange.size(); i++) {
 			List<String> rowData = (List<String>) relationListChange.get(i);
-			if (arrayDupulicate(rowData, rowData.get(0)) == false) {
-				newRelactionList.add(rowData);
-			} else {
+			
+			if (arrayDupulicate(rowData, rowData.get(0))) {
 				resultCnt++;
+			} else {
+				newRelactionList.add(rowData);
 			}
 		}
 		
