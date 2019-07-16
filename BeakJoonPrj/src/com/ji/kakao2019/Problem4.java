@@ -5,6 +5,7 @@ public class Problem4 {
 	public static void main(String[] args) {
 		
 		int[] food_times = { 3, 1, 2 };
+//		int[] food_times = { 1, 3, 3, 4, 5 };
 		long k = 5;
 
 		
@@ -34,11 +35,12 @@ public class Problem4 {
 
 		}
 
-		int answer = 0;
-		for (int food : food_times) {
-			if (food > 0)
-				answer++;
+		int answer=-1;
+		for (int i=0; i<food_times.length; i++) {
+			if (food_times[i] > 0)
+				answer=i+1;
 		}
+		
 		return answer;
 	}
 
