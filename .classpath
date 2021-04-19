@@ -3,5 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-1.8.0"/>
 	<classpathentry kind="src" path="BeakJoonPrj/src"/>
 	<classpathentry kind="src" path="MailProgrammingPrj/src"/>
+	<classpathentry kind="src" path="Programmers"/>
+	<classpathentry kind="src" path="kakao"/>
 	<classpathentry kind="output" path="BeakJoonPrj/bin"/>
 </classpath>
