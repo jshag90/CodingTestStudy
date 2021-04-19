@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="BeakJoonPrj/src"/>
 	<classpathentry kind="src" path="MailProgrammingPrj/src"/>
 	<classpathentry kind="src" path="Programmers"/>
-	<classpathentry kind="src" path="kakao"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="BeakJoonPrj/bin"/>
 </classpath>
