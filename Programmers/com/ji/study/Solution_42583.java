@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class Solution_42583 {
 
-// Å×½ºÆ® ÄÉÀÌ½º
+// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 //   solution(2, 10, new int[] {7,4,5,6}); //8
 //   solution(3, 10, new int[] {7,4,5,6}); //11
 //   solution(2, 10, new int[] {4,5,4,6}); //6
@@ -44,21 +44,21 @@ public class Solution_42583 {
 
 			if (!passingTrucks.isEmpty() && time == passingTrucks.peek().getMoveCnt()) {
 
-				// ´Ù¸®¸¦ Áö³²
+				// ë‹¤ë¦¬ë¥¼ ì§€ë‚¨
 				TruckVO vo = passingTrucks.poll(); 
 
-				// Æ®·°ÀÌ ³ª°¡¼­ ÇÏÁß Áõ°¡
+				// íŠ¸ëŸ­ì´ ë‚˜ê°€ì„œ í•˜ì¤‘ ì¦ê°€
 				weight += vo.getWeight();
 			}
 
-			// ³²Àº ÇÏÁß º¸´Ù Æ®·° ÇÏÁßÀÌ ÀÛÀ¸¸é
+			// ë‚¨ì€ í•˜ì¤‘ ë³´ë‹¤ íŠ¸ëŸ­ í•˜ì¤‘ì´ ì‘ìœ¼ë©´
 			if (weight >= truck_weights[idx]) {
-				// ¹è¿­ {ÁøÀÔÇÑ Æ®·°ÀÇ ¹«°Ô, µµ´Ş½Ã°£}
+				// ë°°ì—´ {ì§„ì…í•œ íŠ¸ëŸ­ì˜ ë¬´ê²Œ, ë„ë‹¬ì‹œê°„}
 				TruckVO vo = new TruckVO();
 				vo.setWeight(truck_weights[idx]);
 				vo.setMoveCnt(time + bridge_length);
 				passingTrucks.add(vo);
-				// Æ®·°ÀÌ ¿Ã¶ó°¡°í ³²Àº ÇÏÁß
+				// íŠ¸ëŸ­ì´ ì˜¬ë¼ê°€ê³  ë‚¨ì€ í•˜ì¤‘
 				weight -= truck_weights[idx++];
 			}
 
