@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MakeMinNum {
+public class MakeMinNumTry {
 	
 	public static void main(String[] args) {
 		int[] A = new int[] {1,2};
