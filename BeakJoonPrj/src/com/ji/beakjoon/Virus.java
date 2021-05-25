@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Virus {
 
 	static int computerCnt, connectPairCnt;
 	static int[][] graph;
 	static boolean[] DFSisVisited;
-	static ArrayList<Integer> DFSvisitArr;
+	static List<Integer> DFSvisitArr;
 
 	public static void main(String[] args) throws IOException {
 
@@ -24,7 +25,7 @@ public class Virus {
 		graph = new int[computerCnt + 1][computerCnt + 1];
 		DFSisVisited = new boolean[computerCnt + 1]; //방문 정보 초기화
 
-		DFSvisitArr = new ArrayList();
+		DFSvisitArr = new ArrayList<Integer>();
 
 		for (int i = 0; i < connectPairCnt; i++) {
 			String[] comPairNum = String.valueOf(br.readLine()).split(" ");
