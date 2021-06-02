@@ -5,74 +5,67 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrganicCabbage {
-	
-	static int fieldCntHorizantal, fieldCntVertical; //노드 개수
-	static int plantCabbageCnt; //간선 개수
-	static int[][] graph;
-	static boolean[] DFSisVisited;
-	static List<Integer> DFSvisitArr;
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-//		int testCase = Integer.valueOf(br.readLine());
-		String[] plantCabbageInfo = br.readLine().split(" ");
-		fieldCntHorizantal = Integer.valueOf(plantCabbageInfo[0]);
-		fieldCntVertical = Integer.valueOf(plantCabbageInfo[1]);
-		plantCabbageCnt = Integer.valueOf(plantCabbageInfo[2]);
-		graph = new int[fieldCntHorizantal][fieldCntVertical];
-		DFSisVisited = new boolean[(fieldCntVertical*fieldCntHorizantal)+1];
+		int testCase = Integer.valueOf(br.readLine());
+
+		for (int t = 0; t < testCase; t++) {
+
+			String[] plantCabbageInfo = br.readLine().split(" ");
+			int fieldCntHorizantal = Integer.valueOf(plantCabbageInfo[0]); // 행렬 가로 길이
+			int fieldCntVertical = Integer.valueOf(plantCabbageInfo[1]);// 행렬 세로 길이
+			int plantCabbageCnt = Integer.valueOf(plantCabbageInfo[2]);
+			int[][] graph = new int[fieldCntHorizantal + 1][fieldCntVertical + 1];
+
+			for (int i = 0; i < plantCabbageCnt; i++) {
+				String[] comPairNum = String.valueOf(br.readLine()).split(" ");
+				int a = Integer.parseInt(comPairNum[0]);
+				int b = Integer.parseInt(comPairNum[1]);
+				graph[a][b] = 1;
 		
-		DFSvisitArr = new ArrayList<Integer>();
-		
-		for(int i=0; i<plantCabbageCnt; i++) {
-			String[] comPairNum = String.valueOf(br.readLine()).split(" ");
-			int a = Integer.parseInt(comPairNum[0]);
-			int b = Integer.parseInt(comPairNum[1]);
-			graph[a][b] = 1;
-		}
-		
-//		for( int i = 0 ; i < (fieldCntVertical*fieldCntHorizantal)+1 ; i++) {
-//			DFSisVisited[i] = false;
-//		}
-		
-		for(int i=0; i< fieldCntHorizantal; i++ ) {
-			for(int j=0; j<fieldCntVertical; j++) {
-				System.out.print(graph[i][j]+" ");
 			}
-			System.out.println();
+
+			int count = 0;
+			for (int j = 0; j < fieldCntVertical ; j++) {
+				for (int i = 0; i < fieldCntHorizantal ; i++) {
+					if (graph[i][j] == 1) {
+						count++;
+						dfs(graph, i, j);
+					}
+				}
+			}
+			
+			bw.write(String.valueOf(count)+"\n");
+			
 		}
-		
-		
-//		dfs(1);
-//
-//		for( int i = 0 ; i < DFSvisitArr.size() ; i++ ) {
-//			System.out.print(DFSvisitArr.get(i) + " ");
-//		}
-//		bw.write(String.valueOf(result));
 
 		br.close();
 		bw.flush();
 		bw.close();
-		
+
 	}
-	
-	static void dfs(int nodeNum) {
-		// 방문한 노드 번호에 대한 boolean 처리
-		DFSisVisited[nodeNum] = true;
-		// 방문한 순서에 대한 노드 정보 리스트 저장
-		DFSvisitArr.add(nodeNum);
-		for (int i = 1; i <= fieldCntHorizantal*fieldCntVertical; i++) {
-			if (graph[nodeNum][i] == 1 && DFSisVisited[i] == false) {
-				dfs(i);
-			}
-		}
+
+	static void dfs(int[][] graph, int i, int j) {
+		int m = graph.length; //가로 행렬 크기
+		int n = graph[0].length; // 세로 행렬 크기
+		
+		//행렬에서 0이거나 마지막에 있는 값은 예외 처리
+		if (i < 0 || i >= m || j < 0 || j >= n || graph[i][j] != 1)
+			return;
+		
+		//1인 값들은 -1로 변환
+		graph[i][j] = -1;
+
+		dfs(graph, i - 1, j); // 위
+		dfs(graph, i + 1, j); // 아래
+		dfs(graph, i, j - 1);// 왼쪽
+		dfs(graph, i, j + 1);// 오른쪽
 	}
 
 }
