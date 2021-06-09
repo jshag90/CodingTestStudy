@@ -26,19 +26,16 @@ public class NoLookHear {
 		int noHearPersonCnt = Integer.valueOf(noLookHearCountStr[0]);
 		int noLookPersonCnt = Integer.valueOf(noLookHearCountStr[1]);
 		
-		List<String> noHearLookNamesList = new ArrayList<String>();
+		List<String> noHearNamesList = new ArrayList<String>();
 		List<String> noLookHearList = new ArrayList<String>();
-		int allPersonCnt = noHearPersonCnt+noLookPersonCnt;
-		for(int i=0; i<allPersonCnt; i++) 
-			noHearLookNamesList.add(br.readLine());
-			
-		for(int i=0;i<noHearPersonCnt; i++) {
-			String name = noHearLookNamesList.get(i);
-			for(int j=allPersonCnt-1; j > noHearPersonCnt; j--) {
-				if(name.equals(noHearLookNamesList.get(j)))
-					noLookHearList.add(name);
-			}
-			
+		
+		for(int i=0; i<noHearPersonCnt; i++) 
+			noHearNamesList.add(br.readLine());
+		
+		for(int i=0; i<noLookPersonCnt; i++) {
+			String name =br.readLine();
+			if(noHearNamesList.contains(name))
+				noLookHearList.add(name);
 		}
 		
 		Collections.sort(noLookHearList);
