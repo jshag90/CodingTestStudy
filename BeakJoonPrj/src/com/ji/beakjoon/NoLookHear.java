@@ -38,19 +38,19 @@ public class NoLookHear {
 		Collections.sort(noHearNamesList);
 		
 		//이진 검색 트리 사용을 위한 List to Array
-		String[] noHearArr = new String[noHearNamesList.size()];
-		noHearArr = noHearNamesList.toArray(noHearArr);
+		String[] noHearNamesArr = new String[noHearNamesList.size()];
+		noHearNamesArr = noHearNamesList.toArray(noHearNamesArr);
 		
 		for(int i=0; i<noLookPersonCnt; i++) {
 			String name =br.readLine();
-			//POINT!!!
-			int index = Arrays.binarySearch(noHearArr, name);
-			if(index>=0)
+			if(Arrays.binarySearch(noHearNamesArr, name)>=0) //POINT!!!
 				noLookHearList.add(name);
 		}
 		
+		//문제에서 사전순 요구함
 		Collections.sort(noLookHearList);
 		bw.write(String.valueOf(noLookHearList.size())+"\n");
+		
 		for(String name:noLookHearList)
 			bw.write(String.valueOf(name)+"\n");
 
