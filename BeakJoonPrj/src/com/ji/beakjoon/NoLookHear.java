@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,9 +33,19 @@ public class NoLookHear {
 		for(int i=0; i<noHearPersonCnt; i++) 
 			noHearNamesList.add(br.readLine());
 		
+		//정렬한 데이터가 검색 속도가 더 빠름
+		//순차 접근시 O(n), 이진 트리 검색시 O(logN)
+		Collections.sort(noHearNamesList);
+		
+		//이진 검색 트리 사용을 위한 List to Array
+		String[] noHearArr = new String[noHearNamesList.size()];
+		noHearArr = noHearNamesList.toArray(noHearArr);
+		
 		for(int i=0; i<noLookPersonCnt; i++) {
 			String name =br.readLine();
-			if(noHearNamesList.contains(name))
+			//POINT!!!
+			int index = Arrays.binarySearch(noHearArr, name);
+			if(index>=0)
 				noLookHearList.add(name);
 		}
 		
