@@ -1,14 +1,8 @@
 package com.ji.beakjoon;
 
-import static org.hamcrest.CoreMatchers.containsString;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 문자열 폭발
@@ -16,68 +10,45 @@ import java.util.List;
  * @author ji
  *
  */
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class StringExplosion {
 
-	static String result = "";
-
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-		String originString = br.readLine();
-		String explosionString = br.readLine();
-
-		char[] originChar = originString.toCharArray();
-		char[] explosionChar = explosionString.toCharArray();
-
-		excuteExplosion(originChar, explosionChar, explosionString);
-
-		bw.write(String.valueOf(result) + "\n");
-
-		br.close();
-		bw.flush();
-		bw.close();
+		String str = br.readLine();
+		String bomb = br.readLine();
+		String answer = solution(str, bomb);
+		System.out.println((answer.length() == 0) ? "FRULA" : answer);
+		
 	}
 
-	public static void excuteExplosion(char[] originChar, char[] explosionChar, String explosionString) {
-
-		int[] ignoreIndex = new int[2];
-		ignoreIndex[0] = 0;
-		ignoreIndex[1] = 0;
-		for (int i = 0; i < originChar.length - explosionChar.length; i++) {
-
-			String mergedChar = "";
-			int endIndex = i + explosionChar.length;
-			for (int j = i; j < endIndex; j++) {
-				mergedChar += String.valueOf(originChar[j]);
-			}
-
-			if (mergedChar.equals(explosionString)) {
-				ignoreIndex[0] = i;
-				ignoreIndex[1] = endIndex;
-			}
-
-			if (ignoreIndex[1] > 0)
-				break;
+	private static String solution(String str, String bomb) {
+		char[] result = new char[str.length()];
+		int idx = 0;
+		for (int i = 0; i < str.length(); i++) {
+			result[idx] = str.charAt(i);
+			//폭발할 문자열이 나타나면 하나씩 증가하면 인덱스를 
+			//검증할 문자열 길이 만큼 감소 시켜 감을 넣게된다.
+			if (isBomb(result, idx, bomb))
+				idx -= bomb.length();
+			idx++;
 		}
+		return String.valueOf(result, 0, idx);
+	}
 
-		String explodedString = "";
-		for (int index = 0; index< originChar.length; index++) {
-			if (index >= ignoreIndex[0] && index < ignoreIndex[1])
-				continue;
-			explodedString += originChar[index];
+	private static boolean isBomb(char[] result, int idx, String bomb) {
+		if (idx < bomb.length() - 1)
+			return false;
+		for (int i = 0; i < bomb.length(); i++) {
+			int resultIndex = idx - bomb.length() + 1 + i;
+			//검증할 문자열 길이 만큼의 index와 result의 저장된 문자열이 같은지 검사
+			//첫번째 문자열이 다르면 loop탈출
+			if (bomb.charAt(i) != result[resultIndex])
+				return false;
 		}
-
-		if (ignoreIndex[0] == 0 && ignoreIndex[1] == explosionChar.length) {
-			result = "FRULA";
-		} else if (ignoreIndex[1] > 0) {
-			excuteExplosion(explodedString.toCharArray(), explosionChar, explosionString);
-		} else {
-			if(explodedString.substring(explodedString.length() - explosionChar.length) == explosionString)
-				explosionString = explosionString.substring(0, explodedString.length() - explosionChar.length);
-			result = explodedString;
-		}
-
+		return true;
 	}
 
 }
