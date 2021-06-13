@@ -1,14 +1,10 @@
 package com.ji.beakjoon;
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 문자열 폭발
@@ -16,7 +12,7 @@ import java.util.List;
  * @author ji
  *
  */
-public class StringExplosion {
+public class StringExplosion_Try {
 
 	static String result = "";
 
