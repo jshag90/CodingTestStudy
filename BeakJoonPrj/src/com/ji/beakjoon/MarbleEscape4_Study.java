@@ -7,32 +7,27 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-/**
- * https://www.acmicpc.net/problem/15653
- * @author ji
- *
- */
-public class MarbleEscape4 {
-
-	static class Node {
-		int r, c, time;
-		char type;
-
-		Node(int r, int c, char type, int time) {
-			this.r = r;
+public class MarbleEscape4_Study {
+	
+	static class Node{
+		int r, c, time; 
+		char type; 
+		
+		Node(int r, int c, char type, int time){
+			this.r = r; 
 			this.c = c;
-			this.type = type;
+			this.type =type; 
 			this.time = time;
 		}
 	}
-
+	
 	static Queue<Node> q;
 	static boolean[][][][] visited;
 	static int[][] dir = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 	static char[][] map;
 	static int blueR, blueC, redR, redC;
-	static int N, M;
-
+	static int N, M; 
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -66,6 +61,7 @@ public class MarbleEscape4 {
 		visited[redR][redC][blueR][blueC] = true;
 
 		System.out.println(bfs());
+			
 	}
 
 	private static int bfs() {
@@ -150,4 +146,5 @@ public class MarbleEscape4 {
 
 		return -1;
 	}
+
 }
