@@ -1,4 +1,4 @@
-package com.ji.beakjoon;
+package com.ji.beakjoon.bfs;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
