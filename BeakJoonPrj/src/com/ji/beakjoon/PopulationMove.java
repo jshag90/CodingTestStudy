@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
  
+/**
+ * 인구이동
+ * @author ji
+ *
+ */
 public class PopulationMove {
  
     static int N, L, R, map[][];

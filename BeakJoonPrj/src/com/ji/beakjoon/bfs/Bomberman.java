@@ -6,6 +6,11 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 봄버맨
+ * @author ji
+ *
+ */
 public class Bomberman {
 
 	static char map[][];

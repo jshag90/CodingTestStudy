@@ -8,6 +8,11 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 주유소
+ * @author ji
+ *
+ */
 public class GasStation {
 	
 	public static void main(String[] args) throws IOException {
