@@ -1,4 +1,4 @@
-package com.ji.beakjoon;
+package com.ji.beakjoon.dp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -37,6 +37,7 @@ public class IntervalSum5 {
 			int x2 = Integer.valueOf(points[2]);
 			int y2 = Integer.valueOf(points[3]);
 
+			//마지막 포인트 합에서 이전 포인트의 값들을 빼줌!!!
 			int sum=dp[x2][y2] - dp[x2][y1-1] - dp[x1-1][y2] + dp[x1-1][y1-1];
 
 			bw.write(String.valueOf(sum) + "\n");
