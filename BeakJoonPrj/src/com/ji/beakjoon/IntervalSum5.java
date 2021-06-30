@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class IntervalSum5 {
-	static int[] dp;
+	
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,35 +16,29 @@ public class IntervalSum5 {
 		int gridSize = Integer.valueOf(sizeSumCountStr[0]);
 		int sumCount = Integer.valueOf(sizeSumCountStr[1]);
 
-		int[][] numbersMap = new int[gridSize][gridSize];
+		int[][] numbersMap = new int[gridSize+1][gridSize+1];
+		int[][] dp = new int[gridSize+1][gridSize+1];
 
-		for (int i = 0; i < gridSize; i++) {
+
+		for (int i = 1; i <= gridSize; i++) {
 			String[] points = br.readLine().split(" ");
-			for (int j = 0; j < gridSize; j++) {
-				numbersMap[i][j] = Integer.valueOf(points[j]);
+			for (int j = 1; j <= gridSize; j++) {
+				numbersMap[i][j] = Integer.valueOf(points[j-1]);
+				//dp안에 0,0부터 특정 배열까지의 값들은 더해 놓음!!!
+				dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp [i-1][j-1] + numbersMap[i][j];
+
 			}
 		}
 
-		dp = new int[sumCount];
-		
-		for (int k = 0; k < sumCount; k++) {
+		for (int k = 1; k <= sumCount; k++) {
 			String[] points = br.readLine().split(" ");
 			int x1 = Integer.valueOf(points[0]);
 			int y1 = Integer.valueOf(points[1]);
 			int x2 = Integer.valueOf(points[2]);
 			int y2 = Integer.valueOf(points[3]);
 
+			int sum=dp[x2][y2] - dp[x2][y1-1] - dp[x1-1][y2] + dp[x1-1][y1-1];
 
-			int sum = 0;
-			for (int i = 0; i < gridSize; i++) {
-				for (int j = 0; j < gridSize; j++) {
-
-					if ((x1 - 1) <= i && (x2 - 1) >= i && (y1 - 1) <= j && (y2 - 1) >= j) {
-//						sum += numbersMap[i][j];
-						dp[k] +=numbersMap[i][j];
-					}
-				}
-			}
 			bw.write(String.valueOf(sum) + "\n");
 		}
 
