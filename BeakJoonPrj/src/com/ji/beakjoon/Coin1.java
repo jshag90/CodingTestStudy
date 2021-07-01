@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 
 public class Coin1 {
 
-	static Integer[] dp;
+	static int[] dp;
 	static int[] coinTypes;
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -18,16 +18,17 @@ public class Coin1 {
 		int coinType = Integer.valueOf(condition[0]);
 		int targetNum = Integer.valueOf(condition[1]);
 		
-		coinTypes = new int[coinType];
-		for(int i=0; i < coinType; i++) {
+		coinTypes = new int[coinType+1];
+		dp = new int[targetNum + 1];
+		dp[0] = 1;
+		
+		for(int i=1; i <= coinType; i++) {
 			coinTypes[i] = Integer.valueOf(br.readLine());
+			for(int j=coinTypes[i]; j <=targetNum; j++)
+				dp[j] += dp[j - coinTypes[i]];
 		}
 		
-		dp = new Integer[targetNum + 1];
-		dp[0] = dp[1] =0;
-		
-		int result = recur(targetNum);
-		bw.write(String.valueOf(result));
+		bw.write(String.valueOf(dp[targetNum]));
 		
 		br.close();
 		bw.flush();
@@ -35,16 +36,4 @@ public class Coin1 {
 		
 	}
 	
-	public static int recur(int targetNum) {
-		 
-		if (dp[targetNum] == null) {
-			
-			for(int i=0; i< coinTypes.length; i++) {
-					dp[targetNum] = recur(targetNum-coinTypes[i]*i);
-			}
-			
-		}
-		
-		return dp[targetNum];
-	}
 }
