@@ -1,4 +1,4 @@
-package com.ji.beakjoon;
+package com.ji.beakjoon.dp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,8 +24,10 @@ public class Coin1 {
 		
 		for(int i=1; i <= coinType; i++) {
 			coinTypes[i] = Integer.valueOf(br.readLine());
-			for(int j=coinTypes[i]; j <=targetNum; j++)
+			for(int j=coinTypes[i]; j <= targetNum; j++) {
+				//dp 안에 각 동전 금액에 따라서 targetNumber가 되는 과정을 dp에 저장하여 처리
 				dp[j] += dp[j - coinTypes[i]];
+			}
 		}
 		
 		bw.write(String.valueOf(dp[targetNum]));
