@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * 동전1
+ * @author ji
+ *
+ */
 public class Coin1 {
 
 	static int[] dp;

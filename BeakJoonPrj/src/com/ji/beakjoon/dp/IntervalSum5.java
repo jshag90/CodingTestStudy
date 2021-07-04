@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * 구간합구하기5
+ * @author ji
+ *
+ */
 public class IntervalSum5 {
 	
 	public static void main(String[] args) throws IOException {

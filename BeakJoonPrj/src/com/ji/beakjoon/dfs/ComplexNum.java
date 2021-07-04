@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 단지번호붙이기
+ * @author ji
+ *
+ */
 public class ComplexNum {
 
 	static int complexMapSize = 0; //단지 지도 크기
