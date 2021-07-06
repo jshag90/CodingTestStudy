@@ -45,12 +45,12 @@ public class CrossingBridgeDfs {
 				done = true;
 			}
 
-			// 작은 점프
+			// 작은 점프 값으로 sum증가 후 재귀
 			sum += arr[personPosition - 1][0];
 			dfs(personPosition + 1, k, done, sum);
 			sum -= arr[personPosition - 1][0];
 
-			// 큰 점프
+			// 큰 점프 값으로 sum 증가 후 재귀
 			sum += arr[personPosition - 1][1];
 			dfs(personPosition + 2, k, done, sum);
 			sum -= arr[personPosition - 1][1];
