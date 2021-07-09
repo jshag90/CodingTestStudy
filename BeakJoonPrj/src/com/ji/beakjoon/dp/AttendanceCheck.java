@@ -28,12 +28,12 @@ public class AttendanceCheck {
 		
 		List<Integer> kArr = new ArrayList<Integer>(); //졸고 있는 학생 번호 배열
 		String[] sleepStudent = br.readLine().split(" ");
-		for(int i=0;i<sleepStudent.length;i++)
+		for(int i=0;i<K;i++)
 			kArr.add(Integer.valueOf(sleepStudent[i]));
 		
 		List<Integer> qArr = new ArrayList<Integer>(); //출석 코드를 받을 학생의 입장 번호
 		String[] rcvStudent = br.readLine().split(" ");
-		for(int j=0; j<rcvStudent.length; j++) {
+		for(int j=0; j<Q; j++) {
 			int recStudentNum = Integer.valueOf(rcvStudent[j]);
 			if(!kArr.contains(recStudentNum))
 				qArr.add(recStudentNum);
