@@ -59,7 +59,12 @@ public class WineTasting {
 		
 		//각 노드의 이전의 최대값과 비교, 조합 가능한 최대값을 저장
 		if(dp[N] == null) {
-			dp[N] = Math.max(Math.max(recur(N - 2), recur(N - 3) + wineAmountArr[N - 1]) + wineAmountArr[N], recur(N - 1));
+			dp[N] = Math.max(
+										Math.max( recur(N - 2),  recur(N - 3) + wineAmountArr[N - 1] ) 
+										+ wineAmountArr[N]
+										, 
+										recur(N - 1)
+									 );
 		}
 		
 		return dp[N];

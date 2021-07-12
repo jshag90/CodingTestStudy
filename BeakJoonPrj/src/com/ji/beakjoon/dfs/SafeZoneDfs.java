@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * 안전 영역 
- * (실패)
  * @author ji
  *
  */

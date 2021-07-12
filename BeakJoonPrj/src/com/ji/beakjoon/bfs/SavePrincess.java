@@ -75,7 +75,7 @@ public class SavePrincess {
 					if(map[nr][nc] == 0) {
 						visit[0][nr][nc] = true;
 						q.add(new Pair(nr,nc,0, cur.time +1));
-					}else if(map[nr][nc]==2) {
+					}else if(map[nr][nc]==2) {//아이템 발견
 						visit[1][nr][nc]=true;
 						q.add(new Pair(nr,nc, 1, cur.time+1));
 					}
