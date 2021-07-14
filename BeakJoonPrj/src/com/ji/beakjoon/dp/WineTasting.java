@@ -39,14 +39,14 @@ public class WineTasting {
 		bw.write(String.valueOf(recur(wineCount)));
 		
 		//Bottom-Up
-//		dp[1] = wineAmountArr[1];
-//		if (wineCount > 1) {
-//			dp[2] = wineAmountArr[1] + wineAmountArr[2];
-//		}
-//		for (int i = 3; i <= wineCount; i++) {
-//			dp[i] = Math.max(dp[i - 1], Math.max(dp[i - 2] + wineAmountArr[i], dp[i - 3] + wineAmountArr[i - 1] + wineAmountArr[i]));
-//		}
-//		System.out.println(dp[wineCount]);
+		dp[1] = wineAmountArr[1];
+		if (wineCount > 1) {
+			dp[2] = wineAmountArr[1] + wineAmountArr[2];
+		}
+		for (int i = 3; i <= wineCount; i++) {
+			dp[i] = Math.max(dp[i - 1], Math.max(dp[i - 2] + wineAmountArr[i], dp[i - 3] + wineAmountArr[i - 1] + wineAmountArr[i]));
+		}
+		System.out.println(dp[wineCount]);
 		
 		br.close();
 		bw.flush();

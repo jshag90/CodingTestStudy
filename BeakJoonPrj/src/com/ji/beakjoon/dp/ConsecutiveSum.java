@@ -22,23 +22,17 @@ public class ConsecutiveSum {
 		numbersArr = new int[numberCount + 1];
 
 		String[] inputNumbers = br.readLine().split(" ");
-		for (int i = 1; i < numberCount + 1; i++) {
-			numbersArr[i] = Integer.valueOf(inputNumbers[i]);
-		}
-		dp[0] = 0;
-		dp[1] = numbersArr[1];
-		if(numberCount > 1) {
-			dp[2] = numbersArr[1] + numbersArr[2];
-		}
-		for(int i =3 ; i<=numberCount; i++ ) {
-//			dp[i] = Math.max(dp[i-1], Math.max(dp[], b))
-		}
+		for (int i = 1; i < numberCount + 1; i++)
+			numbersArr[i] = Integer.valueOf(inputNumbers[i-1]);
 		
+		dp[0] = 1;
+		dp[1] = numbersArr[1] + numbersArr[2];
 		
+		for(int i =1 ; i<numberCount+1; i++ ) {
+				dp[i] = Math.max(dp[i-1], dp[i - 2] + numbersArr[i]);
+		}
 
-		int result = 0;
-
-		bw.write(String.valueOf(result));
+		bw.write(String.valueOf(dp[numberCount]));
 
 		br.close();
 		bw.flush();
