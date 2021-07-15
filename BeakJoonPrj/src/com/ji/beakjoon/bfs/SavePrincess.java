@@ -14,6 +14,7 @@ public class SavePrincess {
 	static int dr[] = {-1, 1, 0, 0};
 	static int dc[] = {0, 0, -1, 1};
 	static int ret;
+	
 	static class Pair{
 		int r,c,time;
 		int item;
