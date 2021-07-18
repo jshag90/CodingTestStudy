@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * 연속합
+ * @author ji
+ *
+ */
 public class ConsecutiveSum {
-
-	static Integer[] dp;
-	static int[] numbersArr;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
@@ -18,34 +20,27 @@ public class ConsecutiveSum {
 
 		Integer numberCount = Integer.valueOf(br.readLine());
 
-		dp = new Integer[numberCount + 1];
-		numbersArr = new int[numberCount + 1];
+		int[] dp = new int[numberCount];
+		int[] numbersArr = new int[numberCount];
 
 		String[] inputNumbers = br.readLine().split(" ");
-		for (int i = 1; i < numberCount + 1; i++)
-			numbersArr[i] = Integer.valueOf(inputNumbers[i-1]);
+		for (int i = 0; i < numberCount; i++)
+			numbersArr[i] = Integer.valueOf(inputNumbers[i]);
 		
-		dp[0] = 1;
-		dp[1] = numbersArr[1] + numbersArr[2];
-		
-		for(int i =1 ; i<numberCount+1; i++ ) {
-				dp[i] = Math.max(dp[i-1], dp[i - 2] + numbersArr[i]);
+		dp[0] = numbersArr[0];
+		int max = numbersArr[0];
+		//bottom-up
+		for(int i =1 ; i<numberCount; i++ ) {
+				dp[i] = Math.max(dp[i-1]+numbersArr[i], numbersArr[i]);
+				
+				max = Math.max(max, dp[i]);
 		}
 
-		bw.write(String.valueOf(dp[numberCount]));
+		bw.write(String.valueOf(max));
 
 		br.close();
 		bw.flush();
 		bw.close();
 	}
-
-//	public static int recur(int N) {
-//		
-//		if(dp[N] == null) {
-//			
-//		}
-//		
-//		return dp[N];
-//	}
 
 }

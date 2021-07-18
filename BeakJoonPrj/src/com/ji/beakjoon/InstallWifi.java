@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
+/**
+ * 공유기 설치
+ * @author ji
+ *
+ */
 // 설치 가능한 경우에 수
 // 3개가 주어지면 좌표에서 설치 가능한 경우의 수
 public class InstallWifi {
@@ -31,7 +36,7 @@ public class InstallWifi {
 		int end = homePoints[homeCount-1]-homePoints[0];//최대거리
 		
 		while(start <= end) {
-			//이분 탐색
+			//이분 탐색 
 			int mid=(start+end)/2;
 			//mid기준으로 범위안에 wifiCount 갯수 이상 설치가 가능한지
 			// mid의 거리를 좁혀 가면서 검사

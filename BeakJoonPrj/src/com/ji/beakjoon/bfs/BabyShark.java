@@ -3,6 +3,11 @@ package com.ji.beakjoon.bfs;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * 아기상어
+ * @author ji
+ *
+ */
 public class BabyShark {
 	
 	static int[] dy = {-1, 0, 0, 1};
@@ -34,8 +39,11 @@ public class BabyShark {
         	// 일반적인 Queue를 사용하면 상,좌,우,하 탐색하다가 규칙에 어긋나게됨
         	// 우선순위를 큐를 사용하여 이를 해결해야함
             PriorityQueue<int[]> que = new PriorityQueue<>((o1, o2) ->
-                    o1[2] != o2[2] ? Integer.compare(o1[2], o2[2]) : (o1[0] != o2[0] ? Integer.compare(o1[0], o2[0]) : Integer.compare(o1[1], o2[1]))
+                    o1[2] != o2[2] ? Integer.compare(o1[2], o2[2]) 
+                    						: (o1[0] != o2[0] ? Integer.compare(o1[0], o2[0]) 
+                    							: Integer.compare(o1[1], o2[1]))
             );
+            
             boolean[][] visit = new boolean[N][N];
 
             que.add(new int[]{cur[0], cur[1], 0}); // y좌표, x좌표, 이동한 거리
