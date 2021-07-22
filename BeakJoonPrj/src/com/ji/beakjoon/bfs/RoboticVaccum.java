@@ -25,7 +25,7 @@ public class RoboticVaccum {
 		int h = Integer.valueOf(roomSize[1]);
 		roomMap = new char[h][w];
 	    Queue<int[]> que = new LinkedList<>();
-	    int cnt = 0;
+	    
 	    boolean visit[][] = new boolean[h][w];
 		for(int i=0; i< h; i++) {
 			String roomInfo = String.valueOf(br.readLine());
@@ -35,17 +35,13 @@ public class RoboticVaccum {
 				if(roomMap[i][j] == 'o') {
 					que.add(new int[] {i, j});
 					visit[i][j] = true;
-				}else if(roomMap[i][j] == '*') {
-					//더러운 칸의 개수
-					cnt++;
 				}
 				
 			}
 		}
 		
 		int ans = 0;
-		
-		while(cnt > 0 && !que.isEmpty()) {
+		while( !que.isEmpty()) {
 			for(int s=que.size(); s>0 ; s--) {
 				int[] cur = que.poll();
 				
@@ -57,11 +53,12 @@ public class RoboticVaccum {
 	                    if (ny < 0 || nx < 0 || ny >= h || nx >= w || visit[ny][nx]) 
 	                        continue;
 	                    
-	                    cnt++;
-	                	roomMap[ny][nx] = '.';
+//	                    if(roomMap[ny][nx] == 'x') {
+//	                    	ans--;
+//	                    }
+	                    
 	                	visit[ny][nx] = true;
 	                	que.add(new int[] {ny,nx});
-	                	
 				  }
 			}
 			ans++;
