@@ -44,7 +44,8 @@ public class StartLink {
 			int cur = que.poll();
 			if (cur == G) {
 				result = visitFloorArr[cur] - 1;
-				break;
+				System.out.println(result);
+				return;
 			}
 
 			// Up 버튼을 눌렀을 때 꼭대기 층보다 작거나 같을 경우
@@ -64,7 +65,7 @@ public class StartLink {
 		}
 		
 		//(만약, U층 위, 또는 D층 아래에 해당하는 층이 없을 때는, 엘리베이터는 움직이지 않는다)
-		System.out.println((result == -1)?"use the stairs":result);
+		System.out.println("use the stairs");
 
 	}
 
