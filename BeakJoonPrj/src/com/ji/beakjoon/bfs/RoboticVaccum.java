@@ -30,6 +30,48 @@ public class RoboticVaccum {
 	static ArrayList<Pair> dirtyPoint;
 	static int[] dr = { -1, 0, 1, 0 };
 	static int[] dc = { 0, 1, 0, -1 };
+	
+	/**
+	 * 문제 분석 : 
+	 * DFS, BFS를 결합하여 최종 결과를 도출해냄
+	 * 1. 더러운 칸과 로봇 청소기 사이의 거리를 table이라는 변수에 저장한다. (BFS)
+	 * 2. 더러운 칸을 방문하는 경우의 수을 통해서 table의 저장된 거리 정보의 값을 통해서 최소 시간 값을 계산함(DFS)
+	 * @param args
+	 * @throws IOException
+	 */
+
+	public static void main(String[] args) throws IOException {
+	
+		while (true) {
+			//입력값 초기화
+			if (!initAndInput()) {
+				return;
+			} else {
+				//첫번쨰 더러운 캇을 마지막 값으로 저장
+				dirtyPoint.add(dirtyPoint.get(0));
+				//더러운 칸 0번째에 청소기 청음 위치를 저장
+				dirtyPoint.set(0, new Pair(NOWR, NOWC));
+				dirtyCount++;
+	
+				for (int i = 0; i < dirtyPoint.size(); i++) {
+					table[i][i] = 0;
+					for (int j = i + 1; j < dirtyPoint.size(); j++) {
+						//bfs를 통해서 각 점사이의 거리를 구함
+						table[i][j] = table[j][i] = bfs(i, j);
+					}
+				}
+	
+				ArrayList<Integer> list = new ArrayList<>();
+				boolean[] isVisit = new boolean[dirtyCount];
+	
+				make(dirtyCount - 1, list, isVisit);
+			}
+			if (totalTime < 0)
+				totalTime = -1;
+			bw.write(totalTime + "\n");
+			bw.flush();
+		}
+	}
 
 	static int pI(String s) {
 		return Integer.parseInt(s);
@@ -45,6 +87,7 @@ public class RoboticVaccum {
 		C = pI(st.nextToken());
 		R = pI(st.nextToken());
 
+		//마지막 값의 경우 예외 처리
 		if (R == 0 && C == 0)
 			return false;
 
@@ -60,11 +103,13 @@ public class RoboticVaccum {
 			for (int j = 0; j < C; j++) {
 
 				map[i][j] = temp.charAt(j);
+				//청소기 위치 저장
 				if (map[i][j] == 'o') {
 					NOWR = i;
 					NOWC = j;
 					map[i][j] = '.';
 				}
+				//더러운 칸 좌표 dirtPoint 리스트에 저장
 				if (map[i][j] == '*') {
 					dirtyPoint.add(new Pair(i, j));
 					dirtyCount++;
@@ -75,35 +120,6 @@ public class RoboticVaccum {
 		table = new int[dirtyCount + 1][dirtyCount + 1];
 
 		return true;
-	}
-
-	public static void main(String[] args) throws IOException {
-
-		while (true) {
-			if (!initAndInput()) {
-				return;
-			} else {
-				dirtyPoint.add(dirtyPoint.get(0));
-				dirtyPoint.set(0, new Pair(NOWR, NOWC));
-				dirtyCount++;
-
-				for (int i = 0; i < dirtyPoint.size(); i++) {
-					table[i][i] = 0;
-					for (int j = i + 1; j < dirtyPoint.size(); j++) {
-						table[i][j] = table[j][i] = bfs(i, j);
-					}
-				}
-
-				ArrayList<Integer> list = new ArrayList<>();
-				boolean[] isVisit = new boolean[dirtyCount];
-
-				make(dirtyCount - 1, list, isVisit);
-			}
-			if (totalTime < 0)
-				totalTime = -1;
-			bw.write(totalTime + "\n");
-			bw.flush();
-		}
 	}
 
 	static int bfs(int src, int dest) {
@@ -144,8 +160,10 @@ public class RoboticVaccum {
 		return Integer.MIN_VALUE;
 	}
 
+	//dfs를 통해서 순열을 구함 
 	static void make(int dirty, ArrayList<Integer> list, boolean[] isVisit) {
 		// 순서 지정이 모두 끝났다.
+		// 테이블 안에 거리 정보를 통해서 최소 시간값을 구한다.
 		if (dirty == 0) {
 			int nowSum = table[0][list.get(0)];
 			for (int i = 0; i < list.size() - 1; i++) {
