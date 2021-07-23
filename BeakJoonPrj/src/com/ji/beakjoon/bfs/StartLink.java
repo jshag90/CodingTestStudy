@@ -55,7 +55,7 @@ public class StartLink {
 				que.add(cur + U);
 			}
 
-			// Down 버튼을 눌렀을때 건물은 1층 부터 시작 하기 때문0보다 커야함 
+			// Down 버튼을 눌렀을때 건물은 1층 부터 시작 하기 때문에 0보다 커야함 
 			// 방문 하지 않은 경우
 			if (cur - D > 0 && visitFloorArr[cur - D] == 0) {
 				visitFloorArr[cur - D] = visitFloorArr[cur] + 1;
