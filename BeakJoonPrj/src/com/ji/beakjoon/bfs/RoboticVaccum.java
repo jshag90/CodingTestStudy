@@ -109,11 +109,13 @@ public class RoboticVaccum {
 					NOWC = j;
 					map[i][j] = '.';
 				}
+				
 				//더러운 칸 좌표 dirtPoint 리스트에 저장
 				if (map[i][j] == '*') {
 					dirtyPoint.add(new Pair(i, j));
 					dirtyCount++;
 				}
+				
 			}
 		}
 
@@ -143,6 +145,7 @@ public class RoboticVaccum {
 			int cc = q.poll().c;
 			int currentTime = time.poll();
 
+			//목적지 좌표와 일치할경우 현재 시간값 리턴
 			if (rr == destination.r && cc == destination.c) {
 				return currentTime;
 			}
@@ -157,6 +160,7 @@ public class RoboticVaccum {
 				}
 			}
 		}
+		
 		return Integer.MIN_VALUE;
 	}
 
