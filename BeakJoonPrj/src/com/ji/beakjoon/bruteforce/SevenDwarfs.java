@@ -3,9 +3,7 @@ package com.ji.beakjoon.bruteforce;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * 일곱 난쟁이 2309번
@@ -14,28 +12,33 @@ import java.util.List;
  *
  */
 public class SevenDwarfs {
-
+	
+	public static int[] output = new int[7]; // 순열 출력을 위한 배열
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int[] allDwarfs = new int[9];
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 9; i++)
 			allDwarfs[i] = Integer.valueOf(br.readLine());
-		}
-		int[] output = new int[10]; // 순열 출력을 위한 배열
-		boolean[] visited = new boolean[10];
-
+		
 		per1(allDwarfs, 0, allDwarfs.length, 7);
+		
+		Arrays.sort(output);
+		for(int res : output)
+			System.out.println(res);
 	}
 
+	//순열을 이용한 경우의 수
 	static void per1(int[] arr, int depth, int n, int r) {
 		if (depth == r) {
-//			print(arr, r);
-			
+			int sum = 0;
 			for (int i = 0; i < r; i++) 
-				System.out.print(arr[i] + " ");
-			System.out.println();
+				sum += arr[i];
 			
+			if(sum == 100) {
+				for (int i = 0; i < r; i++) 
+					output[i] = arr[i];
+			}
 			return;
 		}
 
@@ -43,25 +46,6 @@ public class SevenDwarfs {
 			swap(arr, depth, i);
 			per1(arr, depth + 1, n, r);
 			swap(arr, depth, i);
-		}
-	}
-
-	// 배열 출력
-	static void print(int[] arr, int r) {
-		int sum = 0;
-		boolean flag = false;
-		for (int i = 0; i < r; i++) {
-			sum+= arr[i];
-			if(sum == 100) {
-				flag = true;
-				break;
-			}
-		}
-		if(flag) {
-			for (int i = 0; i < r; i++) 
-				System.out.print(arr[i] + " ");
-			System.out.println();
-			return;
 		}
 	}
 
