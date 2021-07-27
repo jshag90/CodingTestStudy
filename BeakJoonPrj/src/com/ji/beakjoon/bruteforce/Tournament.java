@@ -25,10 +25,14 @@ public class Tournament {
 
 			for(int i=0; i< personNumList.size(); i++) {
 				
-				if(personNumList.get(i)%2 == 0 ) {
+				int pNum = personNumList.get(i);
+				
+				if(i+1 % 2 == 0) {
 					
+					personNumList.remove(i);
 					
 				}
+					
 				
 				
 			}
