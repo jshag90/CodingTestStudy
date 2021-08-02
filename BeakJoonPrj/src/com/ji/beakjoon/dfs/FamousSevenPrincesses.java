@@ -12,6 +12,7 @@ public class FamousSevenPrincesses {
     static int temp[];
     static int dir[][] = {{1,0},{-1,0},{0,-1},{0,1}};
     static int result;
+    
     public static void main(String[] args) throws IOException {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -24,20 +25,23 @@ public class FamousSevenPrincesses {
                 map[i][j] = s.charAt(j);
             }
         }
+        
         result = 0;
         DFS(0,0); //좌표,카운트,s개수,t개수
         System.out.println(result);
+        
     }
 
     private static void DFS(int cnt,int idx) {
         if(cnt == 7)
         {
+        	//인접해 있고, 
             if(adj() && che())
                 result++;
             return;
         }
         for (int k = idx; k < 25; k++) {
-            //7개를 뽑는다.
+            // 7개를 뽑는다.
             // 7개중 y가 4개이상이면 안된다.
             // 7개를 좌표로 맵핑하여 인접한지 확인
             if(!check[k])
@@ -50,7 +54,9 @@ public class FamousSevenPrincesses {
         }
     }
 
-    private static boolean che() { //우위를 정했는지에 대한 체크함수
+    // ‘이다솜파’가 반드시 우위를 점해야 한다. 
+    // 따라서 7명의 학생 중 ‘이다솜파’의 학생이 적어도 4명 이상은 반드시 포함
+    private static boolean che() { 
         int s_cnt=0;
         for (int i = 0; i < 25; i++) {
             if(check[i])
@@ -66,7 +72,8 @@ public class FamousSevenPrincesses {
         return false;
     }
 
-    private static boolean adj() { //bfs를 이용한다.
+    //bfs를 이용해서 인접해 있는지 판단
+    private static boolean adj() { 
         int id=0;
         for (int i = 0; i < 25; i++) {
             if(check[i])
@@ -76,8 +83,10 @@ public class FamousSevenPrincesses {
             }
 
         }
+        
         LinkedList<int []> queue = new LinkedList<int[]>();
-        queue.offer(new int[] {id/5,id%5}); //암거나 하나 넣음
+        queue.offer(new int[] {id/5,id%5}); // 임의로 하나 넣음
+        
         boolean adj_check[][] = new boolean[5][5];
         adj_check[id/5][id%5] = true;
         int cnt = 1;
@@ -97,10 +106,9 @@ public class FamousSevenPrincesses {
                 }
             }
         }
-        if(cnt == 7)
-            return true;
-        else 
-            return false;
+        
+        return cnt == 7?true:false;
+        
     }
 	
 
