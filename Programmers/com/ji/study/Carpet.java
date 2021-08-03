@@ -3,7 +3,7 @@ package com.ji.study;
 public class Carpet {
 
 	public static void main(String[] args) {
-		solution(10, 2);
+		solution(8, 1);
 		
 	}
 	//두수의 곱셈 연산
@@ -21,7 +21,9 @@ public class Carpet {
 	
 	static void per1(int[] arr, int depth, int n, int b, int y) {
 		if (depth == 2) {
-			if(arr[0]*arr[1] == (b+y) && arr[0] >= arr[1]) {
+			if(arr[0]*arr[1] == (b+y) 
+//					&& arr[0] >= arr[1]
+							) {
 				for (int i = 0; i < 2; i++) {
 					System.out.print(arr[i]+" ");
 				}
