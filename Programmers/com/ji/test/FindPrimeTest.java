@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.ji.study.FindPrime;
+import com.ji.main.FindPrime;
 
 class FindPrimeTest {
 

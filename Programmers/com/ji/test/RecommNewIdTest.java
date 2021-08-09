@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.ji.study.RecommNewId;
+import com.ji.main.RecommNewId;
 
 public class RecommNewIdTest {
 	

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.ji.study.Printer;
+import com.ji.main.Printer;
 
 public class PrinterTest {
 

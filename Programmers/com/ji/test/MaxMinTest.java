@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.ji.study.MaxMin;
+import com.ji.main.MaxMin;
 
 public class MaxMinTest {
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.ji.study.MakeMinMum;
+import com.ji.main.MakeMinMum;
 
 class MakeMinNumTest {
 
