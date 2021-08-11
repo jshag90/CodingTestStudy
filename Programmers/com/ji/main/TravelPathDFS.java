@@ -12,24 +12,23 @@ import java.util.List;
  */
 public class TravelPathDFS {
 
-	private static List<String> DFSvisitArr = new ArrayList<>();
 	
 	public static void main(String[] args) {
 //
-//		String[] result = solution(new String[][] { { "ICN", "JFK" }, { "HND", "IAD" }, { "JFK", "HND" } });
-		String[] result = solution(new String[][] { { "ICN", "SFO" }, { "ICN", "ATL" }, { "SFO", "ATL" }, { "ATL", "ICN" }, { "ATL", "SFO" } });
-		for(String res : result)
+		String[] result1 = solution(new String[][] { { "ICN", "JFK" }, { "HND", "IAD" }, { "JFK", "HND" } });
+		for(String res : result1)
+			System.out.print(res+" ");
+		System.out.println();
+		String[] result2 = solution(new String[][] { { "ICN", "SFO" }, { "ICN", "ATL" }, { "SFO", "ATL" }, { "ATL", "ICN" }, { "ATL", "SFO" } });
+		for(String res : result2)
 			System.out.print(res+" ");
 //		System.out.println(solution(new String[][] { { "ICN", "SFO" }, { "ICN", "ATL" }, { "SFO", "ATL" }, { "ATL", "ICN" }, { "ATL", "SFO" } }));
 
 	}
 	
-	
-
+	private static List<String> DFSvisitArr = new ArrayList<>();
 	public static String[] solution(String[][] tickets) {
 		String[] answer = {};
-		
-		int row = tickets.length;
 		
 		List<Integer> icnList = new ArrayList<>();
 		for(int i=0; i<tickets.length; i++) {
@@ -40,7 +39,7 @@ public class TravelPathDFS {
 		for(int j=0; j < icnList.size(); j++) {
 			DFSvisitArr = new ArrayList<String>();
 			DFSvisitArr.add("ICN");
-			boolean[] visted = new boolean[row];
+			boolean[] visted = new boolean[tickets.length];
 			for(int i=0; i<tickets.length; i++) {
 				if(visted[i] == false && icnList.get(j) == i) {
 					dfs(i,visted,tickets, tickets[i][1]);
@@ -61,6 +60,5 @@ public class TravelPathDFS {
 			}
 		}
 	}
-	
 
 }
