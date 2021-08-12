@@ -19,20 +19,29 @@ public class MakeBigNumber {
 			arr[i] = Integer.parseInt(numbers[i]);
 		
 		int r = number.length()-k;
-		per1(arr, 0 , arr.length, r);
+		per1(arr, 0 , arr.length, r, number);
 		
 		answer = String.valueOf(maxNum);
 		return answer;
 	}
 	
-	static void per1(int[] arr, int depth, int n, int r) {
+	static void per1(int[] arr, int depth, int n, int r, String number) {
 		if (depth == r) {
 			
 			String sumStr = "";
-			for (int i = 0; i < r; i++) 
+			boolean isOrderNum = true;
+			int beforIndex = 0;
+			for (int i = 0; i < r; i++) {
+				String num = String.valueOf(arr[i]);
+				if(beforIndex > number.lastIndexOf(num) ) {
+					isOrderNum = false;
+					break;
+				}
+				beforIndex = number.indexOf(num);
 				sumStr += arr[i];
-			
-			if(maxNum <= Integer.valueOf(sumStr))
+			}
+			System.out.println(sumStr);
+			if(isOrderNum && maxNum <= Integer.valueOf(sumStr))
 				maxNum = Integer.valueOf(sumStr);
 			
 			return;
@@ -40,7 +49,7 @@ public class MakeBigNumber {
 
 		for (int i = depth; i < n; i++) {
 			swap(arr, depth, i);
-			per1(arr, depth + 1, n, r);
+			per1(arr, depth + 1, n, r, number);
 			swap(arr, depth, i);
 		}
 	}
