@@ -1,15 +1,19 @@
 package com.ji.dfs;
 
-public class MakeBigNumber {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MakeBigNumberTry {
 
 	public static int maxNum = Integer.MIN_VALUE;
-	
+	public static List<String> caseNumList = new ArrayList<String>();
 	public static void main(String[] args) {
 //		System.out.println(solution("1924", 2));
 		System.out.println(solution("1231234", 3));
 //		System.out.println(solution("4177252841", 4));
 	}
 
+	//
 	public static String solution(String number, int k) {
 		String answer = "";
 		
@@ -19,37 +23,41 @@ public class MakeBigNumber {
 			arr[i] = Integer.parseInt(numbers[i]);
 		
 		int r = number.length()-k;
-		per1(arr, 0 , arr.length, r, number);
+	    
+		per1(arr, 0 , arr.length, r);
+		
+		
+		
+		
+//		int sum = Integer.MIN_VALUE;
+//		for(int i=0; i< caseNumList.size();i++) {
+//			if(caseNumList.get(i).substring(r-1).equals("4")) {
+//				if(Integer.valueOf(caseNumList.get(i)) > sum)
+//					sum = Integer.valueOf(caseNumList.get(i));
+//			}
+//		}
+//		System.out.println(sum);
+		
+		
 		
 		answer = String.valueOf(maxNum);
 		return answer;
 	}
 	
-	static void per1(int[] arr, int depth, int n, int r, String number) {
+	static void per1(int[] arr, int depth, int n, int r) {
 		if (depth == r) {
 			
 			String sumStr = "";
-			boolean isOrderNum = true;
-			int beforIndex = 0;
 			for (int i = 0; i < r; i++) {
-				String num = String.valueOf(arr[i]);
-				if(beforIndex > number.lastIndexOf(num) ) {
-					isOrderNum = false;
-					break;
-				}
-				beforIndex = number.indexOf(num);
-				sumStr += arr[i];
+				sumStr += String.valueOf(arr[i]);
 			}
-			System.out.println(sumStr);
-			if(isOrderNum && maxNum <= Integer.valueOf(sumStr))
-				maxNum = Integer.valueOf(sumStr);
-			
+			caseNumList.add(sumStr);
 			return;
 		}
 
 		for (int i = depth; i < n; i++) {
 			swap(arr, depth, i);
-			per1(arr, depth + 1, n, r, number);
+			per1(arr, depth + 1, n, r);
 			swap(arr, depth, i);
 		}
 	}
