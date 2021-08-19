@@ -1,9 +1,11 @@
 package com.ji.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class DiscoController {
 
@@ -19,75 +21,75 @@ public class DiscoController {
 	 * @return
 	 */
 	public static int solution(int[][] jobs) {
-		int answer = 0;
 		
+		Arrays.sort(jobs, (o1, o2) -> o1[0] - o2[0]);
 		
+		// 각 테스크가 작은 순서 부터 정렬
+		List<int[]> jobsList = new ArrayList<>();
+		for (int i = 0; i < jobs.length; i++) {
+			jobsList.add(jobs[i]);
+		}
+
+		Collections.sort(jobsList, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				int o1TaskDuration = o1[1] - o1[0];
+				int o2TaskDuration = o2[1] - o2[0];
+				if (o1TaskDuration < o2TaskDuration)
+					return -1;
+				else if (o1TaskDuration >= o2TaskDuration)
+					return 1;
+				return 0;
+			}
+		});
+
 		List<TaskVO> taskList = new ArrayList<>();
 		int beforeTaskEnd = 0;
-		for (int i = 0; i < jobs.length; i++) {
-			int start = jobs[i][0] + beforeTaskEnd;
-			int end = start + jobs[i][1];
+		for (int i = 0; i < jobsList.size(); i++) {
+			int start = jobsList.get(i)[0] + beforeTaskEnd;
+			int end = start + jobsList.get(i)[1];
 			int diff = end - start;
 			TaskVO tVO = new TaskVO(start, end, diff, beforeTaskEnd);
 			taskList.add(tVO);
-
 			int index = i + 1;
 			beforeTaskEnd = end - index;
 		}
-		
+
 		int sum = 0;
-		for(TaskVO vo : taskList)
-			sum += vo.getDelay()+vo.getDiff();
-		answer = sum/taskList.size();
+		for (TaskVO vo : taskList)
+			sum += vo.getDelay() + vo.getDiff();
 		
-//		int[] caseArr = new int[taskList.size()];
-//		boolean[] visited = new boolean[taskList.size()];
-//		for (int i = 0; i < taskList.size(); i++) {
-//			caseArr[i] = i;
-//		}
-		
-//		List<String> makeNumber = new ArrayList<String>();
-//		dfs(0, caseArr, new int[taskList.size()], visited, makeNumber);
+		return sum / taskList.size();
 
-//		for (String caseNumStr : makeNumber) {
-//			String[] spNum = caseNumStr.split("");
-//			
-//			System.out.println(caseNumStr);
-//			int sum = 0;
-//			for(String num : spNum) {
-//				System.out.println(num);
-//				sum += taskList.get(Integer.parseInt(num)).getDelay()+taskList.get(Integer.parseInt(num)).getDiff();
-//			}
-//			System.out.println(sum/taskList.size());
-//		}
-//		answer = sum/taskList.size();
-
-		return answer;
 	}
 
-	public static void dfs(int n, int[] arr, int[] result, boolean[] visit, List<String> makeNumber) {
-		if (n == arr.length) {// 입력된 숫자 길이 만큼의 경우의 숫자들
-
-			String caseNumStr = "";
-			for (int i = 0; i < arr.length; i++) {
-				caseNumStr += result[i];
+	public int solution2(int[][] jobs) {
+		int answer = 0;
+		int count = 0;// 처리된 디스크
+		int now = 0;//작업이 끝난시간
+		
+		Arrays.sort(jobs, ((o1, o2) -> o1[0]-o2[0]));
+		
+		PriorityQueue<int[]> queue = new PriorityQueue<>(((o1, o2) -> o1[1] - o2[1]));
+		int i = 0;
+		while(count < jobs.length){
+			while (i< jobs.length && jobs[i][0] <= now){
+				queue.add(jobs[i++]);
 			}
-			makeNumber.add(caseNumStr);
-
-		} else {
-
-			for (int i = 0; i < arr.length; i++) {
-				if (!visit[i]) {
-					visit[i] = true;
-					result[n] = arr[i];
-					dfs(n + 1, arr, result, visit, makeNumber);
-					visit[i] = false;
-				}
+			
+			if(queue.isEmpty()){
+				now = jobs[i][0];
+			}else{
+				int[] tmp = queue.poll();
+				answer += tmp[1] + now - tmp[0];
+				now += tmp[1];
+				count++;
 			}
-
 		}
+		
+		return answer/ jobs.length;
 	}
-
+	
 }
 
 class TaskVO {
