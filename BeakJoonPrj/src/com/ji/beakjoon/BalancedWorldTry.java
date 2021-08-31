@@ -7,14 +7,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-public class BalancedWorld {
+/**
+ * 백준 - 균형잡힌 세상
+ * 
+ * @author ji
+ *
+ */
+public class BalancedWorldTry {
+
 	public static void main(String[] args) throws IOException {
+
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		while (true) {
-
 			String readLine = br.readLine();
 			if (readLine.substring(0).equals("."))
 				break;
@@ -27,32 +33,47 @@ public class BalancedWorld {
 				}
 			}
 			
-			Stack<String> stack = new Stack<>();
-			for (int i = 0; i < brakectList.size(); i++) {
+			while (brakectList.get(0).equals("(") || brakectList.get(0).equals("]")) {
+				if (brakectList.size() < 1)
+					break;
+				boolean isExistClose = false;
+				if (brakectList.get(0).equals("(")) {
 
-				if(brakectList.get(i).equals("(") || brakectList.get(i).equals("["))
-					stack.push(brakectList.get(i));
-				else if(brakectList.get(i).equals(")")) {
-					if(stack.empty() || stack.peek() != "(" ) {
-						bw.write("no\n");
-						return;
-					}else {
-						stack.pop();
+					for (int j = 1; j < brakectList.size(); j++) {
+						if (brakectList.get(j).equals(")")) {
+							brakectList.remove(j);
+							brakectList.remove(0);
+							isExistClose = true;
+						}
 					}
 				}
-				else if(brakectList.get(i).equals("]")) {
-					if(stack.empty() || stack.peek() != "[" ) {
-						bw.write("no\n");
-						return;
-					}else {
-						stack.pop();
+
+				if (!isExistClose)
+					break;
+
+				if (brakectList.size() < 1)
+					break;
+
+				if (brakectList.get(0).equals("[")) {
+
+					for (int j = 1; j < brakectList.size(); j++) {
+						if (brakectList.get(j).equals("]")) {
+							brakectList.remove(j);
+							brakectList.remove(0);
+							isExistClose = true;
+						}
 					}
-					
 				}
+				
+				if (brakectList.size() < 1)
+					break;
+
+				if (!isExistClose)
+					break;
 
 			}
 
-			if (stack.empty())
+			if (brakectList.size() == 0)
 				bw.write("yes\n");
 			else
 				bw.write("no\n");
