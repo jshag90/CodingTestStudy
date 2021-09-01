@@ -5,57 +5,49 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class BalancedWorld {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		while (true) {
 
 			String readLine = br.readLine();
 			if (readLine.substring(0).equals("."))
 				break;
 
-			String[] readLineArr = readLine.split("");
-			List<String> brakectList = new ArrayList<String>();
-			for (String str : readLineArr) {
-				if (str.equals("(") || str.equals(")") || str.equals("[") || str.equals("]")) {
-					brakectList.add(str);
-				}
-			}
-			
-			Stack<String> stack = new Stack<>();
-			for (int i = 0; i < brakectList.size(); i++) {
 
-				if(brakectList.get(i).equals("(") || brakectList.get(i).equals("["))
-					stack.push(brakectList.get(i));
-				else if(brakectList.get(i).equals(")")) {
-					if(stack.empty() || stack.peek() != "(" ) {
-						bw.write("no\n");
-						return;
-					}else {
-						stack.pop();
+			Stack<Character> stack = new Stack<Character>();
+			boolean result = true;
+			for (char str  : readLine.toCharArray()) {
+
+				if (str == '(' || str == '[')
+					stack.push(str);
+				else if (str ==')') {
+					if (stack.isEmpty() || stack.pop() != '(') {
+						result = false;
+						break;
 					}
-				}
-				else if(brakectList.get(i).equals("]")) {
-					if(stack.empty() || stack.peek() != "[" ) {
-						bw.write("no\n");
-						return;
-					}else {
-						stack.pop();
+				} else if (str ==']') {
+					if (stack.isEmpty() || stack.pop() != '[') {
+						result = false;
+						break;
 					}
-					
+
 				}
 
 			}
 
-			if (stack.empty())
+			if (!stack.isEmpty())
+				result = false;
+
+			if (result) {
 				bw.write("yes\n");
-			else
+			} else {
 				bw.write("no\n");
+			}
 
 		}
 
