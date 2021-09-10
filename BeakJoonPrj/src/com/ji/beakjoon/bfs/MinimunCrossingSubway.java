@@ -20,8 +20,8 @@ public class MinimunCrossingSubway {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken()); //역의 갯수
+		M = Integer.parseInt(st.nextToken()); //노선의 개수
 		
 		visitedLine = new boolean[M + 1];
 		visitedStation = new boolean[N + 1];
@@ -51,6 +51,8 @@ public class MinimunCrossingSubway {
 	}
 
 	private static int go(int start, int end) {
+		//최소 환승 횟수를 출력을 위해서 우선순위 큐를 저장
+		//각 환승 경로의 환승 횟수를 저장
 		PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(n -> n.transCount));
 		visitedStation[start] = true;
 		for(int line : stations[start]) {
@@ -97,7 +99,6 @@ public class MinimunCrossingSubway {
 			this.curStation = curStation;
 			this.transCount = transCount;
 		} 
-		
 		
 	}
 	
