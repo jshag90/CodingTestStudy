@@ -24,7 +24,7 @@ public class OrganicCabbage {
 			int[][] graph = new int[fieldCntHorizantal + 1][fieldCntVertical + 1];
 
 			for (int i = 0; i < plantCabbageCnt; i++) {
-				String[] comPairNum = String.valueOf(br.readLine()).split(" ");
+				String[] comPairNum = br.readLine().split(" ");
 				int a = Integer.parseInt(comPairNum[0]);
 				int b = Integer.parseInt(comPairNum[1]);
 				graph[a][b] = 1;

@@ -7,18 +7,30 @@ import java.util.Set;
 
 public class RobotFactoryKakaoBank {
 
-	public static Set<int[]> output = new HashSet<int[]>();
-	static Set<EquipVO> equipList = new HashSet<EquipVO>();
+	static Set<EquipVO> equipList = new HashSet<EquipVO>();//부품 정보 초기화
+	static Set<Integer> equipType = new HashSet<Integer>(); //필요한 부품번호 저장
+	public static int max = Integer.MIN_VALUE;
 
 	public static void main(String[] args) {
-
-		System.out.println(solution(
-				new int[][] { { 1, 0, 0 }, { 1, 1, 0 }, { 1, 1, 0 }, { 1, 0, 1 }, { 1, 1, 0 }, { 0, 1, 1 } }, 2));
+		System.out.println(solution(new int[][] { { 1, 0, 0 }, { 1, 1, 0 }, { 1, 1, 0 }, { 1, 0, 1 }, { 1, 1, 0 }, { 0, 1, 1 } }, 2));
 	}
 
 	public static int solution(int[][] needs, int r) {
-		int result = 0;
-		Set<Integer> equipType = new HashSet<Integer>();
+		
+		//입력값 초기화
+		initEquipData(needs);
+
+		//부품 종류 초기화
+		int[] typeArr = equipType.stream().mapToInt(Number::intValue).toArray();
+		
+		//부품 종류 중 r개의 로봇이 선택할 수 있는 모든 경우의 수
+		per1(typeArr, 0, equipType.size(), r);
+		
+		return max;
+	}
+
+	public static void initEquipData(int[][] needs) {
+
 		for (int x = 0; x < needs.length; x++) {
 			for (int y = 0; y < needs[x].length; y++) {
 
@@ -46,26 +58,42 @@ public class RobotFactoryKakaoBank {
 			}
 
 		}
-
-		for (EquipVO vo : equipList) {
-			System.out.println(String.valueOf(vo.getPrdNum()) + String.valueOf(vo.getEquipNum()));
-		}
-
-		int[] typeArr = new int[equipType.size()];
-		int index = 0;
-		for (Integer type : equipType)
-			typeArr[index++] = type;
-		
-		per1(typeArr, 0, equipType.size(), r);
-		
-
-		return result;
 	}
 
 	static void per1(int[] arr, int depth, int n, int r) {
 		if (depth == r) {
-
-			output.add(arr);
+			
+			int count=0;
+			for(EquipVO vo : equipList) {
+				int chk = 0;
+				for (int i = 0; i < r; i++) {
+					//로봇이 부품 처리한 경우의 수와 필요한 부품 번호가 동일한 경우 검사
+					if(vo.getEquipNum().size() == r && vo.getEquipNum().get(i).equals(arr[i]))
+						chk++;
+					
+					//완제품 번호[0] 필요한 부품 번호 [0] 인 경우
+					if(vo.getEquipNum().size() < r) {
+						int sChk = 0;
+						for(int num : vo.getEquipNum()) { //r개의 로봇이 필요한 부품을 모두 포함하는지 검사
+							for (int k = 0; k < r; k++) {
+								if(arr[k] == num);
+									sChk++; break;
+							}
+						}
+						
+						if(sChk == vo.getEquipNum().size())
+							chk=r;
+					}
+						
+				}
+				
+				if(chk == r)
+					count++;
+			}
+			
+			if(max < count)
+				max = count;
+			
 			return;
 		}
 
@@ -85,8 +113,8 @@ public class RobotFactoryKakaoBank {
 }
 
 class EquipVO {
-	int prdNum;
-	List<Integer> equipNum;
+	int prdNum; //완제품 번호
+	List<Integer> equipNum; //필요한 부품 번호
 
 	public EquipVO(int prdNum, List<Integer> equipNum) {
 		super();
