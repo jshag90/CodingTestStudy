@@ -37,6 +37,7 @@ public class Running {
 		String[] mapInfo = br.readLine().split(" ");
 		N = Integer.valueOf(mapInfo[0]);
 		M = Integer.valueOf(mapInfo[1]);
+		//TODO : 어떻게 처리할지 고민
 		maxMoveSize = Integer.valueOf(mapInfo[2]);
 		map = new char[N][M];
 		visited = new boolean[N][M];
@@ -68,18 +69,29 @@ public class Running {
 			}
 			
 			for(int i=0; i<4; i++) {
-				int nr = cur.x + dr[i];
-				int nc = cur.y + dc[i];
+				int nr = cur.x ;
+				int nc = cur.y ;
 				
-				if(nr<0||nc<0||nr>=N||nc>=M||visited[nr][nc]|| map[nr][nc] == '#') continue;
-				
-				visited[nr][nc] = true;
-				ret++;
+				for(int j=0; j <= maxMoveSize;j++) {
+					nr +=dr[i];
+					nc +=dc[i];
+					
+					if(nr<0||nc<0||nr>=N||nc>=M||visited[nr][nc]|| map[nr][nc] == '#') continue;
+					
+					ret++;
+					visited[nr][nc] = true;
+					
+					que.add(new Points(nr, nc));
+					
+				}
 				
 			}
 			
 		}
 		
+		if(!isMoveSuccess) {
+			ret = -1;
+		}
 		System.out.println(ret);
 
 	}
