@@ -5,9 +5,11 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * 백준1743 - 음식물피하기
+ * @author seonhak
+ * @date 2021. 9. 17.
+ */
 public class AvoidFood {
 
 	static int map[][];
@@ -34,9 +36,9 @@ public class AvoidFood {
 
 		for (int i = 0; i < foodCnt; i++) {
 			String[] points = br.readLine().split(" ");
-			int xaivs = Integer.parseInt(points[0]);
-			int yaivs = Integer.parseInt(points[1]);
-			map[xaivs - 1][yaivs - 1] = 1; //좌표 배치 -1
+			int xPoint = Integer.parseInt(points[0])-1;
+			int yPoint = Integer.parseInt(points[1])-1;
+			map[xPoint][yPoint] = 1; //좌표 배치 -1
 		}
 
 		int max = Integer.MIN_VALUE;
@@ -53,6 +55,7 @@ public class AvoidFood {
 		}
 
 		bw.write(String.valueOf(max));
+		bw.flush();
 		bw.close();
 		br.close();
 

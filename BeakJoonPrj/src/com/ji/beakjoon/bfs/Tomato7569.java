@@ -8,9 +8,9 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 백준 토마토 7569
- * @author ji
- *
+ * 백준7569 - 토마토
+ * @author seonhak
+ * @date 2021. 9. 17.
  */
 public class Tomato7569 {
 
@@ -52,7 +52,7 @@ public class Tomato7569 {
 				
 				int[] cur = que.poll();// 익은 토마토 위치
 				for (int k = 0; k < 6; k++) {
-					int ny = cur[0] + dy[k]; // 세로
+					int ny = cur[0] + dy[k]; // 세로 
 					int nx = cur[1] + dx[k]; // 가로
 					int nh = cur[2] + dh[k]; // 토마토 판
 
