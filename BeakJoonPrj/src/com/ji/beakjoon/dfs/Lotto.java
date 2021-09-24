@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,17 +27,10 @@ public class Lotto {
 
 		while (true) {
 			String readLine = br.readLine();
-			if (readLine.equals("0")) {
+			if (readLine.equals("0")) 
 				break;
-			}
 			
-			String[] lineNumbers = readLine.split(" ");
-
-			int[] arr = new int[lineNumbers.length];
-			int idx = 0;
-			for(String nums : lineNumbers)
-				arr[idx++] = Integer.parseInt(nums);
-			
+			int[] arr = Arrays.stream(readLine.split(" ")).mapToInt(Integer::parseInt).toArray(); 
 			int[] perArr = new int[arr[0]];
 			boolean[] visited = new boolean[arr[0]];
 			for (int i = 1; i < arr.length; i++)
