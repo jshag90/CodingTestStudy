@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Stack;
 
+/**
+ * 백준10773 - 제로
+ * @author seonhak
+ * @date 2021. 9. 24.
+ */
 public class Zero {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {

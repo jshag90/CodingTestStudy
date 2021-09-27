@@ -11,8 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 백준 6603 로또
- * 
+ * 백준6603 - 로또
  * @author seonhak
  * @date 2021. 9. 24.
  */

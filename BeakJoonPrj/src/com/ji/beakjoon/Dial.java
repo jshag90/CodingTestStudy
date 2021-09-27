@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * 백준5622 - 다이얼
+ * @author seonhak
+ * @date 2021. 9. 24.
+ */
 public class Dial {
 	
 	static Character[][] alphabetInfo = {{},{'A','B','C'},{'D','E','F'},{'G','H','I'},{'J','K','L'},{'M','N','O'},{'P','Q','R','S'},{'T','U','V'},{'W','X','Y','Z'}};
