@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 2021 KAKAO BLIND RECRUITMENT - 메뉴 리뉴얼
+ * @author seonhak
+ * @date 2021. 10. 1.
+ */
 public class MenuRenewal {
 
 	static List<StrVO> biggestOrderList = new ArrayList<StrVO>();
@@ -34,6 +39,7 @@ public class MenuRenewal {
 		List<String> result = new ArrayList<>();
 
 		for (int cour : course) {
+			
 			biggestOrderList = new ArrayList<StrVO>();
 			maxOrderCnt = Integer.MIN_VALUE;
 			for (String order : orders) {
@@ -83,16 +89,19 @@ public class MenuRenewal {
 							cnt++; 
 					}
 				}
-
+				
+				//만들 수 있는 문자열 중에서 r개 이상 문자열이 같은 경우
 				if (cnt >= r) 
 					sameOrder++;
 			}
 
+			// 최소 2명 이상의 손님으로부터 주문된 단품메뉴 조합에 대해서만
 			if (sameOrder >= 2) {
 				biggestOrderList.add(new StrVO(str, sameOrder));
-				if (maxOrderCnt <= sameOrder)
+				if (maxOrderCnt <= sameOrder) //최대 주문 갯수 저장
 					maxOrderCnt = sameOrder;
 			}
+			
 			return;
 		}
 

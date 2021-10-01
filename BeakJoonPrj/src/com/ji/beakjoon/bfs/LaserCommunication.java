@@ -10,6 +10,11 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * 백준6087 - 레이저 통신
+ * @author seonhak
+ * @date 2021. 10. 1.
+ */
 public class LaserCommunication {
 
 	static int N, M;
