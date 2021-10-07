@@ -1,4 +1,4 @@
-package com.ji.algo;
+package com.ji.kakao_blind;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ji.kakao2019;
+package com.ji.kakao_blind;
 
 public class Problem4 {
 	

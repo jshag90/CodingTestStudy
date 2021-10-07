@@ -1,5 +1,4 @@
-package com.ji.kakao2019;
-
+package com.ji.kakao_blind;
 import java.util.ArrayList;
 import java.util.List;
 
