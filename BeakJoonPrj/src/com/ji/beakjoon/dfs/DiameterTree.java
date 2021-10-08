@@ -1,4 +1,4 @@
-package com.ji.beakjoon.tree;
+package com.ji.beakjoon.dfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
